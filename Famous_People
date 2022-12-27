@@ -1,0 +1,46 @@
+/* Create table about the people and what they do here */
+CREATE TABLE movie_stars (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    age INTEGER);
+    
+INSERT INTO movie_stars (fullname, age) VALUES ("Denzel Washington", 67);
+INSERT INTO movie_stars (fullname, age) VALUES ("Tom Cruise", 60);
+INSERT INTO movie_stars (fullname, age) VALUES ("Angelina Jolie", 47);
+INSERT INTO movie_stars (fullname, age) VALUES ("George Clooney", 61);
+INSERT INTO movie_stars (fullname, age) VALUES ("Jamie Foxx", 54);
+INSERT INTO movie_stars (fullname, age) VALUES ("Regina King", 51);
+
+CREATE TABLE movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    year INTEGER);
+    
+INSERT INTO movies (title, year) VALUES ("The Power of the Dog", 2021);
+INSERT INTO movies (title, year) VALUES ("Ray", 2004);
+INSERT INTO movies (title, year) VALUES ("Collateral", 2004);
+INSERT INTO movies (title, year) VALUES ("Bone Collector", 1999);
+INSERT INTO movies (title, year) VALUES ("The Vault", 2021);
+INSERT INTO movies (title, year) VALUES ("Jerry Maguire", 1996);
+
+CREATE TABLE starred_in (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    star_id INTEGER,
+    movie_title TEXT);
+    
+INSERT INTO starred_in (star_id, movie_title) VALUES (1, "The Power of the Dog");
+INSERT INTO starred_in (star_id, movie_title) VALUES (5, "The Power of the Dog");
+INSERT INTO starred_in (star_id, movie_title) VALUES (6, "The Power of the Dog");
+INSERT INTO starred_in (star_id, movie_title) VALUES (5, "Ray");
+INSERT INTO starred_in (star_id, movie_title) VALUES (6, "Ray");
+INSERT INTO starred_in (star_id, movie_title) VALUES (2, "Collateral");
+INSERT INTO starred_in (star_id, movie_title) VALUES (5, "Collateral");
+INSERT INTO starred_in (star_id, movie_title) VALUES (1, "Bone Collector");
+INSERT INTO starred_in (star_id, movie_title) VALUES (3, "Bone Collector");
+INSERT INTO starred_in (star_id, movie_title) VALUES (1, "The Vault");
+INSERT INTO starred_in (star_id, movie_title) VALUES (3, "The Vault");
+INSERT INTO starred_in (star_id, movie_title) VALUES (4, "The Vault");
+INSERT INTO starred_in (star_id, movie_title) VALUES (2, "Jerry Maguire");
+INSERT INTO starred_in (star_id, movie_title) VALUES (6, "Jerry Maguire");
+
+SELECT fullname, movie_title, year FROM movie_stars JOIN starred_in ON movie_stars.id = starred_in. star_id JOIN movies ON movies.title = starred_in.movie_title; 
