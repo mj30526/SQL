@@ -4,5 +4,10 @@ SELECT distinct acctnum FROM BIT_DB.customers INNER JOIN BIT_DB.FebSales ON cust
 SELECT distinct Product, price FROM BIT_DB.JanSales WHERE price in (SELECT min (price) FROM BIT_DB.JanSales);
 SELECT Product,sum(quantity)*price as revenue FROM BIT_DB.JanSales GROUP BY product;
 SELECT Product, location, sum(quantity), sum(quantity)*price as revenue FROM BIT_DB.FebSales WHERE location = '548 Lincoln St, Seattle, WA 98101' GROUP BY product;
-SELECT COUNT(distinct customers.acctnum), avg(quantity*price) FROM BIT_DB.FebSales LEFT JOIN BIT_DB.customers ON FebSales.orderID=customers.order_id WHERE FebSales.Quantity > 2 AND order_id <> '' AND order_id <> 'Order ID'
-SELECT Product, sum(quantity) FROM BIT_DB.FebSales WHERE location like '%Los Angeles%' GROUP BY Product
+SELECT COUNT(distinct customers.acctnum), avg(quantity*price) FROM BIT_DB.FebSales LEFT JOIN BIT_DB.customers ON FebSales.orderID=customers.order_id WHERE FebSales.Quantity > 2 AND order_id <> '' AND order_id <> 'Order ID';
+SELECT Product, sum(quantity) FROM BIT_DB.FebSales WHERE location like '%Los Angeles%' GROUP BY Product;
+SELECT distinct location, COUNT(orderID) FROM BIT_DB.JanSales WHERE location like '%NY%' GROUP BY location HAVING COUNT(orderID)>2;
+SELECT Product, sum(quantity) as quantity FROM BIT_DB.FebSales WHERE Product like '%Headphones%' GROUP BY Product;
+SELECT avg(price*Quantity) FROM BIT_DB.FebSales LEFT JOIN BIT_DB.customers ON FebSales.orderID=customers.order_id WHERE orderid <> '' AND orderid <> 'Order ID';
+SELECT sum(Quantity)/count(customers.acctnum) FROM BIT_DB.FebSales LEFT JOIN BIT_DB.customers ON FebSales.orderID=customers.order_id WHERE orderid <> '' AND orderid <> 'Order ID';
+SELECT Product, sum(Quantity*price) FROM BIT_DB.JanSales GROUP BY Product ORDER BY sum(Quantity*price) desc LIMIT 1;
